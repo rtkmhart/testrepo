@@ -1,0 +1,26 @@
+name: build-and-deploy
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Print github.head_ref
+        run: echo ${{ github.head_ref }}
+
+      - name: Print github.ref
+        run: echo ${{ github.ref }}
+
+      - name: Print github.base_ref
+        run: echo ${{ github.base_ref }}
+
+      - name: Print github.actor
+        run: echo ${{ github.actor }}
