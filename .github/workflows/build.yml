@@ -6,21 +6,21 @@ on:
     branches:
       - main
 jobs:
-  build:
+  deploy-to-dev:
     name: Build
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
-      - uses: actions/checkout@v4
+      - name: "Deploy to dev"
+        run: echo "Deploying to dev environment"
 
-      - name: Print github.head_ref
-        run: echo ${{ github.head_ref }}
+  deploy-to-prod:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: deploy-to-dev
+    environment: prod
 
-      - name: Print github.ref
-        run: echo ${{ github.ref }}
-
-      - name: Print github.base_ref
-        run: echo ${{ github.base_ref }}
-
-      - name: Print github.actor
-        run: echo ${{ github.actor }}
+    steps:
+      - name: "Deploy to prod"
+        run: echo "Deploying to prod environment"
